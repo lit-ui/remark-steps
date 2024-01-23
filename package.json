@@ -1,0 +1,32 @@
+{
+  "name": "remark-step",
+  "version": "1.1.0",
+  "description": "Remark plugin to rebuild step style into DOM",
+  "main": "index.js",
+  "style": "index.css",
+  "sass": "index.scss",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "remark-plugin",
+    "remark",
+    "step",
+    "remark-step",
+    "remark-step-plugin",
+    "litui"
+  ],
+  "author": "lituidev@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lit-ui/remark-step.git"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "unist-util-visit": "^5.0.0"
+  }
+}
