@@ -1,20 +1,37 @@
 {
-  "name": "remark-step",
+  "name": "remark-steps",
   "version": "1.1.0",
-  "description": "Remark plugin to rebuild step style into DOM",
-  "main": "index.js",
+  "description": "Remark plugin to rebuild steps style into DOM",
   "style": "index.css",
   "sass": "index.scss",
-  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./dist/index.mjs",
+        "types": "./dist/index.d.ts"
+      },
+      "require": "./dist/index.js",
+      "default": "./index.css"
+    },
+    "./index.css": "./index.css",
+    "./index.scss": "./index.scss"
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "index.css",
+    "index.scss"
+  ],
   "scripts": {
-    "build": "tsc"
+    "dev": "rollup -c -w",
+    "build": "rollup -c"
   },
   "keywords": [
     "remark-plugin",
     "remark",
-    "step",
-    "remark-step",
-    "remark-step-plugin",
+    "steps",
+    "remark-steps",
+    "remark-steps-plugin",
     "litui"
   ],
   "author": "lituidev@gmail.com",
@@ -24,9 +41,14 @@
     "url": "git+https://github.com/lit-ui/remark-step.git"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "rollup": "^4.9.6",
+    "rollup-plugin-terser": "^7.0.2",
+    "tslib": "^2.6.2",
     "typescript": "^5.3.3"
   },
-  "dependencies": {
+  "peerDependencies": {
     "unist-util-visit": "^5.0.0"
   }
 }

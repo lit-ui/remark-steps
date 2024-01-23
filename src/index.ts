@@ -18,7 +18,7 @@ interface AstNode {
   value?: string;
 }
 
-const plugin = (options: any): any => {
+const steps = (options: any): any => {
   const transformer = async (ast: AstNode) => {
     visit(ast, "containerDirective", (node: AstNode) => {
       if (node.type === "containerDirective" && node.name === "steps") {
@@ -87,4 +87,4 @@ const plugin = (options: any): any => {
   return transformer;
 };
 
-export default plugin;
+export default steps;

@@ -1,11 +1,11 @@
-# Remark Step
+# Remark Steps
 
 Remark plugin to rebuild step style into DOM
 
 ## Install
 
 ```bash
-npm install -D remark-step
+npm install -D remark-steps
 ```
 
 ## Import
@@ -17,9 +17,9 @@ npm install -D remark-step
 > docusaurus.config.js
 
 ```js
-import remarkStep from 'remark-step';
+import steps from 'remark-steps';
 ...
-remarkPlugins: [remarkStep],
+remarkPlugins: [steps],
 
 ```
 
@@ -29,10 +29,10 @@ remarkPlugins: [remarkStep],
 
 ```scss
 // css
-@import "@litui/remark-step/dist/styles.css";
+@import "remark-steps";
 
 // scss
-@import "@litui/remark-step";
+@import "remark-steps";
 ```
 
 #### Define Step's style global variable
@@ -59,7 +59,7 @@ remarkPlugins: [remarkStep],
 Install the package from npm.
 
 ```bash
-npm install -D remark-step
+npm install -D remark-steps
 ```
 
 ### Import plugin
@@ -67,17 +67,21 @@ npm install -D remark-step
 Import the plugin in your `docusaurus.config.js`.
 
 ```js
-import remarkStep from 'remark-step';
+import steps from 'remark-steps';
 ...
-remarkPlugins: [remarkStep],
+remarkPlugins: [steps],
 ```
 
 ### Import style
 
-Import the style in your `custom.scss`.
+Import the style in your `custom.scss` or `custom.css`.
 
-```scss
-@use "remark-step";
+```css
+@use "remark-steps";
+```
+
+```css
+@import "remark-step";
 ```
 
 :::
