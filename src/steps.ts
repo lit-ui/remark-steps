@@ -1,16 +1,17 @@
-import type { Root } from "mdast";
-import { visit } from "unist-util-visit";
-import { createDivNode, type CustomContainerNode } from "./utils";
+import type { Transformer, Plugin } from "unified";
+import type { ContainerDirective } from "mdast-util-directive";
+import { createDivNode, type DirectiveContent } from "./utils";
 
-const steps = () => {
-  const transformer = (ast: Root) => {
-    visit(ast, "containerDirective", (node: CustomContainerNode) => {
+const steps: Plugin = (): Transformer => {
+  return async (root) => {
+    const { visit } = await import("unist-util-visit");
+    visit(root, "containerDirective", (node: ContainerDirective) => {
       if (node.type === "containerDirective" && node.name === "steps") {
-        let newChildren: CustomContainerNode[] = [];
-        let stepDivNode: CustomContainerNode | null = null;
-        let nonHeadingChildren: CustomContainerNode[] = [];
+        let newChildren: DirectiveContent = [];
+        let stepDivNode: any | null = null;
+        let nonHeadingChildren: DirectiveContent = [];
 
-        node.children?.forEach((child: CustomContainerNode) => {
+        node.children?.forEach((child: any) => {
           if (child.type === "heading" && child.depth === 3) {
             if (nonHeadingChildren.length > 0 && stepDivNode) {
               stepDivNode?.children.push(createDivNode([...nonHeadingChildren], "step_content"));
@@ -35,7 +36,7 @@ const steps = () => {
         });
 
         if (nonHeadingChildren.length > 0 && stepDivNode) {
-          (stepDivNode as CustomContainerNode).children.push(createDivNode([...nonHeadingChildren], "step_content"));
+          stepDivNode.children.push(createDivNode([...nonHeadingChildren], "step_content"));
         }
 
         node.children = newChildren;
@@ -46,9 +47,7 @@ const steps = () => {
         };
       }
     });
-    return ast;
   };
-  return transformer;
 };
 
 export { steps };

@@ -1,29 +1,19 @@
-interface HProperties {
-  className?: string;
-  id?: string;
-}
+import { ContainerDirective } from "mdast-util-directive";
 
-interface Data {
-  hName?: string;
-  hChildren?: CustomContainerNode[];
-  hProperties?: HProperties;
-}
+type DirectiveContent = ContainerDirective["children"];
 
-export interface CustomContainerNode {
-  type: string;
-  name?: string;
-  children: CustomContainerNode[];
-  depth?: number;
-  data?: Data;
-  value?: string;
-}
-
-export const createDivNode = (children: CustomContainerNode[], className: string) => ({
-  type: "div",
-  children: [...children],
-  data: {
-    hProperties: {
-      className,
+const createDivNode = (children: DirectiveContent, className: string): ContainerDirective => {
+  return {
+    type: "containerDirective",
+    name: "div",
+    children: [...children],
+    data: {
+      hName: "div",
+      hProperties: {
+        className,
+      },
     },
-  },
-});
+  };
+};
+
+export { createDivNode, DirectiveContent };
