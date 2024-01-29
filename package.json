@@ -1,9 +1,9 @@
 {
   "name": "remark-steps",
-  "version": "1.1.1",
-  "description": "Remark plugin to rebuild steps style into DOM",
-  "style": "index.css",
-  "sass": "index.scss",
+  "version": "1.2.0",
+  "description": "Remark plugin is used to customize the container",
+  "style": "./dist/styles/index.css",
+  "sass": "./dist/styles/index.scss",
   "exports": {
     ".": {
       "import": {
@@ -11,42 +11,55 @@
         "types": "./dist/index.d.ts"
       },
       "require": "./dist/index.js",
-      "default": "./index.css"
+      "default": "./dist/styles/index.css"
     },
-    "./index.css": "./index.css",
-    "./index.scss": "./index.scss"
+    "./index.css": "./dist/styles/index.css",
+    "./index.scss": "./dist/styles/index.scss",
+    "./steps.css": "./dist/styles/steps.css",
+    "./steps.scss": "./dist/styles/steps.css"
   },
   "types": "./dist/index.d.ts",
   "files": [
-    "dist",
-    "index.css",
-    "index.scss"
+    "dist"
   ],
   "scripts": {
-    "dev": "rollup -c -w",
-    "build": "rollup -c"
+    "dev": "npm-run-all --parallel dev:plugin dev:css",
+    "dev:plugin": "rollup -c -w",
+    "dev:css": "pnpm run css --watch",
+    "build": "npm-run-all clean build:plugin build:css",
+    "build:plugin": "PRODUCTION=true rollup -c",
+    "build:css": "pnpm run css --output-style compressed",
+    "css": "node-sass src/styles -o dist/styles",
+    "clean": "rimraf dist"
   },
   "keywords": [
-    "remark-plugin",
+    "litui",
     "remark",
     "steps",
+    "remark-plugin",
     "remark-steps",
     "remark-steps-plugin",
-    "litui"
+    "docusaurus-remark",
+    "docusaurus-remark-steps"
   ],
   "author": "lituidev@gmail.com",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lit-ui/remark-steps.git"
+    "url": "git+https://github.com/lit-ui/docusaurus-remark.git"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@types/mdast": "^4.0.3",
+    "node-sass": "^9.0.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^5.0.5",
     "rollup": "^4.9.6",
     "rollup-plugin-terser": "^7.0.2",
     "tslib": "^2.6.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vfile": "^6.0.1"
   },
   "peerDependencies": {
     "unist-util-visit": "^5.0.0"

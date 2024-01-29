@@ -2,19 +2,25 @@ import typescript from "@rollup/plugin-typescript";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { terser } from "rollup-plugin-terser";
 
+const production = process.env.PRODUCTION ? true : false;
 const config = {
-  input: "src/index.ts",
+  input: {
+    index: "src/index.ts",
+    steps: "src/steps.ts",
+  },
   output: [
     {
-      file: "dist/index.js",
+      dir: "dist",
       format: "cjs",
+      entryFileNames: "[name].js",
     },
     {
-      file: "dist/index.mjs",
+      dir: "dist",
       format: "esm",
+      entryFileNames: "[name].mjs",
     },
   ],
-  plugins: [typescript(), nodeResolve(), terser()],
+  plugins: [typescript(), nodeResolve(), production && terser()],
   external: ["unist-util-visit"],
 };
 

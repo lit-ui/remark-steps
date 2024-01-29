@@ -1,4 +1,7 @@
 .steps {
+  --step-line-color: #f1f2f5;
+  --step-number-color: #a4a6a8;
+  --step-number-background: #f1f2f5;
   counter-reset: step;
 
   .step {
