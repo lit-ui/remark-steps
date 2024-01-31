@@ -10,20 +10,18 @@ npm install -D remark-steps
 
 ## Import
 
-### Docusaurus
-
-#### Import plugin
+### Import plugin
 
 > docusaurus.config.js
 
 ```js
-import steps from 'remark-steps';
+import { steps } from 'remark-steps';
 ...
 remarkPlugins: [steps],
 
 ```
 
-#### Import style
+### Import style
 
 > support css and scss, you can choose one of them
 
@@ -35,15 +33,15 @@ remarkPlugins: [steps],
 @import "remark-steps";
 ```
 
-#### Define Step's style global variable
+### Custom define Step's style
 
 > support css and scss, you can choose one of them
 
 ```css
 :root {
-  --step-line-color: var(--ifm-color-secondary-lighter);
-  --step-number-color: var(--ifm-color-secondary-darkest);
-  --step-number-background: var(--ifm-color-secondary-lighter);
+  --step-line-color: #46b583;
+  --step-number-color: #46b583;
+  --step-number-background: #eef0f4;
 }
 ```
 
@@ -67,7 +65,7 @@ npm install -D remark-steps
 Import the plugin in your `docusaurus.config.js`.
 
 ```js
-import steps from 'remark-steps';
+import { steps } from 'remark-steps';
 ...
 remarkPlugins: [steps],
 ```
@@ -81,7 +79,17 @@ Import the style in your `custom.scss` or `custom.css`.
 ```
 
 ```css
-@import "remark-step";
+@import "remark-steps";
+```
+
+### Custom define Step's style
+
+```css
+:root {
+  --step-line-color: #46b583;
+  --step-number-color: #46b583;
+  --step-number-background: #eef0f4;
+}
 ```
 
 :::
@@ -89,4 +97,4 @@ Import the style in your `custom.scss` or `custom.css`.
 
 > Preview
 
-![preview](./assets/remark-step-preview.png)
+![preview](./assets/steps-snapshot.png)

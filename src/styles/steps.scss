@@ -1,7 +1,4 @@
 .steps {
-  --step-line-color: #f1f2f5;
-  --step-number-color: #a4a6a8;
-  --step-number-background: #f1f2f5;
   counter-reset: step;
 
   .step {
@@ -27,8 +24,8 @@
     height: 2rem;
     line-height: 2rem;
     border-radius: 50%;
-    background-color: var(--step-number-background);
-    color: var(--step-number-color);
+    background-color: var(--step-number-background, #a4a6a8);
+    color: var(--step-number-color, #f1f2f5);
     text-align: center;
   }
 
@@ -39,7 +36,7 @@
     top: 2.5rem;
     width: 0.0625rem;
     height: calc(100% - 2rem);
-    background-image: linear-gradient(to bottom, var(--step-line-color) 70%, transparent 30%);
+    background-image: linear-gradient(to bottom, var(--step-line-color, #f1f2f5) 70%, transparent 30%);
     background-size: 100% 1rem;
   }
 }

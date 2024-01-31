@@ -1,6 +1,6 @@
 {
   "name": "remark-steps",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Remark plugin is used to customize the container",
   "style": "./dist/styles/index.css",
   "sass": "./dist/styles/index.scss",
@@ -46,7 +46,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lit-ui/docusaurus-remark.git"
+    "url": "git+https://github.com/lit-ui/remark-steps.git"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.2.3",
@@ -64,7 +64,7 @@
     "unified": "^11.0.4",
     "vfile": "^6.0.1"
   },
-  "peerDependencies": {
+  "dependencies": {
     "unist-util-visit": "^5.0.0"
   }
 }
