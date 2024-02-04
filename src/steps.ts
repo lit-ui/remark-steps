@@ -1,55 +1,25 @@
-import type { Node } from "mdast";
-import { visit } from "unist-util-visit";
-import type { Transformer, Plugin } from "unified";
-import { createDivNode, type CustomContainerNode } from "./utils";
+import { ast, ASTConfig } from "remark-ast";
 
-const steps: Plugin = (): Transformer => {
-  const transformer = (ast: Node) => {
-    visit(ast, "containerDirective", (node: CustomContainerNode) => {
-      if (node.type === "containerDirective" && node.name === "steps") {
-        let newChildren: CustomContainerNode[] = [];
-        let stepDivNode: CustomContainerNode | null = null;
-        let nonHeadingChildren: CustomContainerNode[] = [];
+const stepsConfig: ASTConfig = {
+  type: "containerDirective",
+  name: "steps",
+  className: "steps",
+  children: [
+    {
+      name: "step",
+      className: "step",
+      conditional: {
+        split: {
+          type: "heading",
+          depth: 3,
+        },
+      },
+    },
+  ],
+};
 
-        node.children?.forEach((child: CustomContainerNode) => {
-          if (child.type === "heading" && child.depth === 3) {
-            if (nonHeadingChildren.length > 0 && stepDivNode) {
-              stepDivNode?.children.push(createDivNode([...nonHeadingChildren], "step_content"));
-              nonHeadingChildren = [];
-            }
-
-            stepDivNode = createDivNode([], "step");
-            newChildren.push(stepDivNode);
-
-            stepDivNode.children.push({
-              type: "div",
-              children: [child],
-              data: {
-                hProperties: {
-                  className: "step_heading",
-                },
-              },
-            });
-          } else {
-            nonHeadingChildren.push(child);
-          }
-        });
-
-        if (nonHeadingChildren.length > 0 && stepDivNode) {
-          (stepDivNode as CustomContainerNode).children.push(createDivNode([...nonHeadingChildren], "step_content"));
-        }
-
-        node.children = newChildren;
-        node.data = {
-          hProperties: {
-            className: "steps",
-          },
-        };
-      }
-    });
-    return ast;
-  };
-  return transformer;
+const steps = () => {
+  return ast(stepsConfig);
 };
 
 export { steps };

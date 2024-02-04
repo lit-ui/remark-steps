@@ -21,7 +21,7 @@ const config = {
     },
   ],
   plugins: [typescript(), nodeResolve(), production && terser()],
-  external: ["unist-util-visit"],
+  external: ["unist-util-visit", "remark-ast"],
 };
 
 export default config;
