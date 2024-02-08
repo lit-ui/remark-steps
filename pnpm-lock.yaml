@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   remark-ast:
-    specifier: ^1.2.1
-    version: 1.2.1
+    specifier: ^1.2.5
+    version: 1.2.5
 
 devDependencies:
   '@rollup/plugin-node-resolve':
@@ -1913,8 +1913,8 @@ packages:
       set-function-name: 2.0.1
     dev: true
 
-  /remark-ast@1.2.1:
-    resolution: {integrity: sha512-4/MeKpPE0v+FsSyNgaqE53LQuF2YL0AbfvFui3EvRjd7dBiZRr8mAC51aZkfg6iE6F5XtQ4fGN8NZMeXBBnv4g==}
+  /remark-ast@1.2.5:
+    resolution: {integrity: sha512-gXtwTS24Cf9SFWLrybERIX6nnoRGd5djFyQnu5hW86JwFx6ck7PrWJaCnWTsll8W1GBwFYPGBGTLZEaROSZTzQ==}
     dependencies:
       unist-util-visit: 5.0.0
     dev: false

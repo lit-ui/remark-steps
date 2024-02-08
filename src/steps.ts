@@ -3,17 +3,15 @@ import { ast, ASTConfig } from "remark-ast";
 const stepsConfig: ASTConfig = {
   type: "containerDirective",
   name: "steps",
+  tag: "div",
   className: "steps",
   children: [
     {
+      type: "heading.3",
       name: "step",
+      tag: "div",
       className: "step",
-      conditional: {
-        split: {
-          type: "heading",
-          depth: 3,
-        },
-      },
+      condition: "partition",
     },
   ],
 };
